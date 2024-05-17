@@ -1,5 +1,8 @@
 README.md
 
+# _What is this project all about?_
+This is everything you need to successfully use PCI/PCIe Passthrough for your 3dfx card on a modern Linux distribution with a compatible motherboard. This is a simple toolset to get it up and running. This project also includes a pre-configured qcow2 disk image with all drivers pre-installed so you don't have to type a single character into a command line or terminal.
+
 # _What works?_
 * Most titles that support Glide, OpenGL & MiniGL
 * Voodoo 2 pass-through
