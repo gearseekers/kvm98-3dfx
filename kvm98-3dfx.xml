@@ -41,7 +41,7 @@
     <suspend-to-disk enabled="no"/>
   </pm>
   <devices>
-    <emulator>/usr/bin/qemu-system-i386</emulator> <!-- 32bit emulator works better. less protection errors. -->
+    <emulator>/usr/bin/qemu-system-i386</emulator> <!-- 32 bit emulator works better. less protection errors in windows 98. -->
     <disk type="file" device="disk">
       <driver name="qemu" type="qcow2" cache="writethrough" discard="unmap"/>
       <source file="/home/voodoo2/VM/kvm98_3dfx.img"/> <!-- required: path to kvm98_3dfx.img -->
@@ -77,7 +77,7 @@
     <controller type="ide" index="0">
       <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x1"/>
     </controller>
-    <interface type="network"> <!-- this networking option is hidden in virt-manager. networking should work out of the box -->
+    <interface type="network"> <!-- this networking option is hidden in virt-manager. networking should work out of the box... should. let us know if you have issues -->
       <mac address="52:54:00:54:c6:9e"/>
       <source network="default"/>
       <model type="pcnet"/>
@@ -103,10 +103,10 @@
     </sound>
     <audio id="1" type="spice"/>
     <video>
-      <model type="vga" vram="65536" heads="1" primary="yes"/> <!-- this will allow you to use 32bit colours in windows 98. yes its spelled colours -->
+      <model type="vga" vram="65536" heads="1" primary="yes"/> <!-- this will allow you to use 32 bit colours in windows 98. yes its spelled colours -->
       <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0"/>
     </video>
-    <hostdev mode="subsystem" type="pci" managed="yes"> <!-- this is the voodoo 2 being passed through from the host. make sure you check your pci/pcie id with lspci or us virt-manager to add it manually -->
+    <hostdev mode="subsystem" type="pci" managed="yes"> <!-- this is the voodoo 2 being passed through from the host. make sure you check your pci/pcie id with lspci or use virt-manager to add it manually. this should work for any pci/pcie device-->
       <source>
         <address domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
       </source>
