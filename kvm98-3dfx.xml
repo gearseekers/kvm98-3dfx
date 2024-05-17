@@ -1,0 +1,126 @@
+<!-- when you copy & paste this into virt-manager it will remove all of these comments so please either refer to the wiki or make a copy of this file -->
+<domain type="kvm">
+  <name>kvm98-3dfx</name>
+  <uuid>685a22b1-bc7b-4d4d-8fc9-cd5df80bd512</uuid> <!-- required: change this when you create a vm and replace the xml. replacing any of the numbers works -->
+  <metadata>
+    <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
+      <libosinfo:os id="http://microsoft.com/win/98"/>
+    </libosinfo:libosinfo>
+  </metadata>
+  <memory unit="KiB">262144</memory> <!-- you don't need to change the memory allocation. windows 98 is very sensitive to this -->
+  <currentMemory unit="KiB">262144</currentMemory>
+  <vcpu placement="static">2</vcpu>
+  <os>
+    <type arch="i686" machine="pc-i440fx-2.4">hvm</type> <!-- pc-i440fx-2.4 is kind of hidden in virt-manager. you don't need to change this -->
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <hyperv mode="custom">
+      <relaxed state="on"/>
+      <vapic state="on"/>
+      <spinlocks state="on" retries="8191"/>
+    </hyperv>
+    <vmport state="off"/>
+  </features>
+  <cpu mode="custom" match="exact" check="partial">
+    <model fallback="allow">pentium3</model> <!-- you can use core2duo but is less stable -->
+    <topology sockets="1" dies="1" cores="1" threads="2"/>
+  </cpu>
+  <clock offset="localtime">
+    <timer name="rtc" tickpolicy="catchup"/>
+    <timer name="pit" tickpolicy="delay"/>
+    <timer name="hpet" present="no"/>
+    <timer name="hypervclock" present="yes"/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled="no"/>
+    <suspend-to-disk enabled="no"/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-i386</emulator> <!-- 32bit emulator works better. less protection errors. -->
+    <disk type="file" device="disk">
+      <driver name="qemu" type="qcow2" cache="writethrough" discard="unmap"/>
+      <source file="/home/voodoo2/VM/kvm98_3dfx.img"/> <!-- required: path to kvm98_3dfx.img -->
+      <backingStore/>
+      <target dev="hda" bus="ide"/>
+      <boot order="1"/>
+      <address type="drive" controller="0" bus="1" target="0" unit="0"/>
+    </disk>
+    <disk type="file" device="cdrom">
+      <driver name="qemu" type="raw" cache="none"/>
+      <source file="/home/voodoo2/Documents/data.iso"/> <!-- optional: path to blank iso for quick file transfer -->
+      <target dev="hdb" bus="ide"/>
+      <readonly/>
+      <boot order="2"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="1"/>
+    </disk>
+    <controller type="usb" index="0" model="ich9-ehci1">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x05" function="0x7"/>
+    </controller>
+    <controller type="usb" index="0" model="ich9-uhci1">
+      <master startport="0"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x05" function="0x0" multifunction="on"/>
+    </controller>
+    <controller type="usb" index="0" model="ich9-uhci2">
+      <master startport="2"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x05" function="0x1"/>
+    </controller>
+    <controller type="usb" index="0" model="ich9-uhci3">
+      <master startport="4"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x05" function="0x2"/>
+    </controller>
+    <controller type="pci" index="0" model="pci-root"/>
+    <controller type="ide" index="0">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x1"/>
+    </controller>
+    <interface type="network"> <!-- this networking option is hidden in virt-manager. networking should work out of the box -->
+      <mac address="52:54:00:54:c6:9e"/>
+      <source network="default"/>
+      <model type="pcnet"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x0"/>
+    </interface>
+    <serial type="pty">
+      <target type="isa-serial" port="0">
+        <model name="isa-serial"/>
+      </target>
+    </serial>
+    <console type="pty">
+      <target type="serial" port="0"/>
+    </console>
+    <input type="mouse" bus="ps2"/>
+    <input type="keyboard" bus="ps2"/>
+    <graphics type="spice" autoport="yes">
+      <listen type="address"/>
+      <image compression="off"/>
+      <gl enable="no"/>
+    </graphics>
+    <sound model="ac97"> <!-- ac97 works the best from testing -->
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x04" function="0x0"/>
+    </sound>
+    <audio id="1" type="spice"/>
+    <video>
+      <model type="vga" vram="65536" heads="1" primary="yes"/> <!-- this will allow you to use 32bit colours in windows 98. yes its spelled colours -->
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0"/>
+    </video>
+    <hostdev mode="subsystem" type="pci" managed="yes"> <!-- this is the voodoo 2 being passed through from the host. make sure you check your pci/pcie id with lspci or us virt-manager to add it manually -->
+      <source>
+        <address domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
+      </source>
+      <rom bar="on"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x08" function="0x0"/>
+    </hostdev>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="1"/>
+    </redirdev>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="2"/>
+    </redirdev>
+    <memballoon model="virtio">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x07" function="0x0"/>
+    </memballoon>
+  </devices>
+</domain>
