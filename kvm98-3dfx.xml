@@ -1,4 +1,4 @@
-<!-- when you copy & paste this into virt-manager it will remove all of these comments so please either refer to the wiki or make a copy of this file. -->
+<!-- when you copy & paste this into virt-manager it will remove all of these comments so please either refer to the wiki or make a copy of this file. you've been warned! -->
 <domain type="kvm">
   <name>kvm98-3dfx</name>
   <uuid>685a22b1-bc7b-4d4d-8fc9-cd5df80bd512</uuid> <!-- required: change this when you create a vm and replace the xml. replacing any of the numbers works -->
