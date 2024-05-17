@@ -1,6 +1,6 @@
 README.md
 
-## _What works?_
+# _What works?_
 * Most titles that support Glide, OpenGL & MiniGL
 * Voodoo 2 pass-through
 
@@ -15,15 +15,13 @@ README.md
 * CPU that supports VT-d/IOMMU and/or PCI/PCIe pass-through
 * Motherboard that allows VT-d/IOMMU to be enabled
 
-## _Installation_
+## _Required Packages for Installation_
 ### Debian/Ubuntu
 
 #### Install KVM, QEMU and virt-manager
 ``$ sudo apt update``
 
 ``$ sudo apt install qemu libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf``
-
-``$ sudo dnf install -y libvirt-devel virt-top libguestfs-tools guestfs-tools``
 
 #### Enable QEMU/KVM
 ``$ sudo systemctl enable libvirtd``
@@ -54,8 +52,7 @@ README.md
 
 ``$ sudo systemctl start libvirtd.service``
 
-
-## _Here is a list of known motherboards_
+## _Known/Possibly Compatible Motherboards_
 ### Intel Boards
 * Gigabyte B660M D3H DDR4
 * Gigabyte B760M D3H DDR4
@@ -86,7 +83,7 @@ README.md
 
 (this list will be expanded)
 
-## _Here is a list of known working motherboards_
+## _Known Working Motherboards_
 * Gigabyte B660M D3H DDR4
 
 (this list will be expanded)
