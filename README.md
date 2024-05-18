@@ -56,57 +56,20 @@ This is everything you need to successfully use PCI/PCIe Passthrough to a Window
 
 ``$ sudo systemctl start libvirtd.service``
 
-## _Known/Possibly Compatible Motherboards_
-### Intel Boards
-* Gigabyte B660M D3H DDR4
-* Gigabyte B760M D3H DDR4
-* ASRock B760M-HDVP
-* ASRock H610M-HDVP/D5 R2.0
-* Asus PRO H610M-CT D4-CSM
-* MSI PRO H610M-C EX
-* Asus PRO H610M-C D4-CSM
-* Asus Pro H610M-C-CSM
-* Gigabyte H610M HD3P (rev. 1.0)
-* ASRock B660M-HDVP/D5
-* Asus Pro H610M-CT2 D4-CSM
-* Gigabyte H610M HD3P (rev. 2.0)
-* Gigabyte B560M
+## _Installation_
 
-### AMD Boards
-* ECS B450AM4-M
-* Biostar B550GTA
-* Asus Pro B550M-C/CSM
-* MSI B350 TOMAHAWK ARCTIC
-* MSI B350 TOMAHAWK
-* Asus PRIME B350-PLUS
-* MSI B350 PC MATE
-* MSI B350 GAMING PLUS
-* Gigabyte GA-AB350M-D3H
-* Biostar B350GT5
-* Biostar X470GTA
+Download a release from Github and follow the instructions for that release. Currently the steps are:
 
-(this list will be expanded)
-
-## _Known Working Motherboards_
-* Gigabyte B660M D3H DDR4
-
-(this list will be expanded)
-
-
-## _PCI 3dfx cards confirmed working_
-* Creative Labs 3D Blaster Voodoo2 12MB
-
-## _TODO_
-* Install script based on your Linux distro
-* Additional performance tweaks
-* Supporting Non-3dfx PCI Graphics cards & 3D Accelerators
-
-(this list will be expanded)
-
-I am currently testing other PCI Video cards and 3D accelerators too. I will keep this updated with my findings.
-
-If you find any other motherboards or cards please reach out to us so we can add them to this list.
-
-This should also work with any other motherboard that will allow you to use PCIe to PCI converters/risers.
-
-The XML configuration files for virt-manager will be released over the next few days.
+* Clone/Download kvm98-3dfx.zip from the repo and extract it to an accessible directory.
+* Clone/Download kvm98-3dfx.xml from the repo.
+* Create Blank VM in virt-manager.
+* In virt-manager preferences enable XML editing.
+* Edit in a text editor kvm98-3dfx.xml and change the UUID to be anything different (change a single digit)
+* Change the location of kvm98-3dfx.img to match your current filesystem
+* (Optional) Change the location of data.iso to match your current filesystem
+* Copy & Paste text XML into the Settings/Overview page in virt-manager for the Blank VM.
+* Click OK/Apply.
+* Close the current VM window and a new VM called "kvm98-3dfx" would have been created.
+* Double check the PCI Device by either changing the Hardware ID or by removing the pre-installed device and adding your own in virt-manager
+* Power up the VM
+* Play GAMES!
