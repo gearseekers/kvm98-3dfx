@@ -71,5 +71,5 @@ Download a release from Github and follow the instructions for that release. Cur
 * Click OK/Apply.
 * Close the current VM window and a new VM called "kvm98-3dfx" would have been created.
 * Double check the PCI Device by either changing the Hardware ID or by removing the pre-installed device and adding your own in virt-manager
-* Power up the VM
+* Power up the VM (scandisk may run but everything will be fine)
 * Play GAMES!
