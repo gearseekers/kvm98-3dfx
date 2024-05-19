@@ -62,6 +62,9 @@ Download a release from Github and follow the instructions for that release. Cur
 
 * Clone/Download kvm98-3dfx.zip from the repo and extract it to an accessible directory.
 * Clone/Download kvm98-3dfx.xml from the repo.
+* * I found a quirk with libvirtd & QEMU on Ubuntu you will need to run the following from the cloned directory if not already present
+
+`sudo cat qemuconf >> /etc/qemu/qemu.conf`
 * Create Blank VM in virt-manager.
 * In virt-manager preferences enable XML editing.
 * Edit in a text editor kvm98-3dfx.xml and change the UUID to be anything different (change a single digit)
