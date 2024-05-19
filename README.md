@@ -10,6 +10,7 @@ This is everything you need to successfully use PCI/PCIe Passthrough to a Window
 # _What doesn't work?_
 * 2D/3D 3dfx cards are NOT working at this stage. (Voodoo3 etc)
 * No AGP cards. We have no plans for AGP either.
+* This doesn't work in WSL (Windows Subsystem for Linux). I have tested it and will try to come up with a solution.
 
 ## _Prerequisites_
 
