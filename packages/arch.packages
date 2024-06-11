@@ -1,0 +1,7 @@
+echo ""
+echo 'Installing required Ubuntu Packages'
+sudo pacman -Syu
+sudo pacman -Syu virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat
+echo 'Enabling & Starting KMV/QEMU'
+sudo systemctl enable libvirtd.service
+sudo systemctl start libvirtd.service

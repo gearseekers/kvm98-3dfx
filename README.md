@@ -20,6 +20,22 @@ This is everything you need to successfully use PCI/PCIe Passthrough to a Window
 * CPU that supports VT-d/IOMMU and/or PCI/PCIe pass-through
 * Motherboard that allows VT-d/IOMMU to be enabled
 
+## _NEW INSTALLER IS HERE!_
+
+* Ubuntu, Debian, Arch and Manjaro should be working
+* I am having some issues with Fedora for now. Working on a fix for 0.21
+
+## _How to install_
+
+* Clone this repo
+* chmod +x install.sh
+* Download the archive or let the installer download the archive.
+* Installer will detect your distro, install all packages required and start the VM
+
+## _What's not working_
+* Fedora/CentOS
+* A few other little bugs but I am ironing them out.
+
 ## _Required Packages for Installation_
 ### Debian/Ubuntu
 

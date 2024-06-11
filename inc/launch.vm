@@ -1,0 +1,4 @@
+#!/bin/sh
+echo 'LETS GO'
+echo 'Do not forget to add your 3dfx device in virt-manager for PCI passthrough. We cannot automate that part'
+virt-manager

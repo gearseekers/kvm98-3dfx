@@ -1,0 +1,6 @@
+echo ""
+echo '\033[1m Installing required Ubuntu Packages\033[0m'
+#sudo dnf install -y libvirt-devel virt-top libguestfs-tools guestfs-tool
+echo '\033[1m Enabling & Starting KMV/QEMU\033[0m'
+#sudo systemctl enable libvirtd
+#sudo systemctl start libvirtd

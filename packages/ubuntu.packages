@@ -1,0 +1,15 @@
+echo ""
+echo '\033[1m Installing required Ubuntu Packages\033[0m'
+sudo "apt update"
+sudo sh -c 'apt install qemu-kvm libvirt-daemon-system libvirt-daemon virtinst bridge-utils libosinfo-bin virt-manager ovmf'
+echo '\033[1m Enabling & Starting KVM/QEMU\033[0m'
+sudo sh -c 'cat ./inc/ubuntu.qemu >> /etc/libvirt/qemu.conf'
+sudo sh -c 'systemctl start libvirtd'
+sudo sh -c 'systemctl enable libvirtd'
+echo '\033[1m Adding Required Users'
+sudo sh -c 'useradd -g $USER libvirt'
+sudo sh -c 'useradd -g $USER libvirt-kvm'
+sudo sh -c 'useradd -g $USER libvirt-qemu'
+echo '\033[1m Quick Restart of KVM/QEMU\033[0m'
+sudo sh -c 'systemctl restart libvirtd'
+exit 0

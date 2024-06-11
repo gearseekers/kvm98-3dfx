@@ -1,0 +1,14 @@
+echo '\033[1m Extracting Archive\033[0m'
+tar xzvf kvm98_3dfx.tar.gz
+echo '\033[1m Copying disk image and config to current users home directory and creating new folder ~/kvm98/\033[0m'
+mkdir ~/kvm98
+#cp ../xml/*.xml ~/kvm98
+cp kvm98_3dfx.img ~/kvm98
+cp ./data/data.iso ~/kvm98
+rm kvm98_3dfx.img
+echo '\033[1m Creating VM in virt-manager\033[0m'
+sed -i '47c   <source file="/home/'"$USER"'/kvm98/kvm98_3dfx.img"/> <!-- required: path to kvm98_3dfx.img -->~' xml/kvm98-3dfx.xml
+sed -i '55c   <source file="/home/'"$USER"'/kvm98/data.iso"/> <!-- optional: path to blank iso for quick file transfer --> xml/kvm98-3dfx.xml
+virsh define ./xml/kvm98-3dfx.xml
+virsh start kvm98-3dfx
+exit 0
