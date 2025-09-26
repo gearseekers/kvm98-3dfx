@@ -44,7 +44,7 @@
     <emulator>/usr/bin/qemu-system-i386</emulator> <!-- 32 bit emulator works better. less protection errors in windows 98. -->
     <disk type="file" device="disk">
       <driver name="qemu" type="qcow2" cache="writethrough" discard="unmap"/>
-<source file="/home/archdev/kvm98/kvm98_3dfx.img"/> <!-- required: path to kvm98_3dfx.img -->
+<source file="/home/mrc013/kvm98/kvm98_3dfx.img"/> <!-- required: path to kvm98_3dfx.img -->~
       <backingStore/>
       <target dev="hda" bus="ide"/>
       <boot order="1"/>
