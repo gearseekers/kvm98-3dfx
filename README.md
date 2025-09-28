@@ -28,7 +28,7 @@ This is everything you need to successfully use PCI/PCIe Passthrough to a Window
 ## _How to install_
 
 * Clone this repo
-* chmod +x install.sh
+* chmod +x install.sh or run the install binary
 * Download the archive or let the installer download the archive.
 * Installer will detect your distro, install all packages required and start the VM
 
