@@ -55,7 +55,7 @@ case $ID in
                      sh ./inc/launch.vm
     ;;
 
-  fedora) echo "You're running CentOS!"
+  fedora) echo "You're running Fedora!"
                 sudo sh ./packages/fedora.packages
                      sh ./packages/fedora.install
                      sh ./inc/launch.vm
